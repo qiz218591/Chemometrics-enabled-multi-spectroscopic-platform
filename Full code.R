@@ -1490,3 +1490,47 @@ ggsave(
 font_import()   # once only
 loadfonts()
 
+
+###most contributing variables figure of supplmentary
+##input the data of combination only
+
+# Contributions of variables to PC1
+fviz_contrib(res.pca, choice = "var", axes = 1, top = 10)
+# Contributions of variables to PC2
+fviz_contrib(res.pca, choice = "var", axes = 2, top = 10)
+
+library(factoextra)
+library(ggplot2)
+
+p <- fviz_contrib(res.pca,
+                  choice = "var",
+                  axes = 1:2,
+                  top = 50) +
+  
+  # Add x-axis label
+  labs(title = NULL,
+       x = "Most contributing independent variables") +
+  
+  theme_classic() +
+  theme(
+    axis.title.x = element_text(size = 18, colour = "black", family = "Arial"),
+    axis.title.y = element_text(size = 18, colour = "black", family = "Arial"),
+    axis.text.x  = element_text(size = 14, colour = "black",
+                                family = "Arial", angle = 45, hjust = 1),
+    axis.text.y  = element_text(size = 15, colour = "black", family = "Arial"),
+    axis.line = element_line(linewidth = 0.5),
+    plot.title = element_blank()
+  )
+
+p
+ggsave(
+  filename = "PCA_variable_contribution1.jpg",
+  plot = p,
+  width = 25,
+  height = 20,
+  units = "cm",
+  dpi = 300,
+  quality = 100
+)
+
+
